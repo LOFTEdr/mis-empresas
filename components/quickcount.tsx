@@ -100,7 +100,8 @@ export const QuickCount: React.FC<QuickCountProps> = ({ data, onUpdate }) => {
     const daysForCalc = data.daysForCalc || 1;
     const totalBank = (data.bancoPopular || 0) + (data.bancoBHD || 0) + (data.bancoBanReservas || 0) + (data.efectivo || 0);
     const totalWeeklyExpenses = localWeeklyDebts.reduce((acc, curr) => acc + curr.amount, 0);
-    const dailyNeeded = daysForCalc > 0 ? totalWeeklyExpenses / daysForCalc : 0;
+    const remainingNeeded = Math.max(0, totalWeeklyExpenses - totalBank);
+    const dailyNeeded = daysForCalc > 0 ? remainingNeeded / daysForCalc : 0;
 
     // Simple New Debt State
     const [newDebt, setNewDebt] = useState({ concept: '', amount: '' });
@@ -333,35 +334,65 @@ export const QuickCount: React.FC<QuickCountProps> = ({ data, onUpdate }) => {
                         </div>
                     </div>
 
-                    <div className="bg-gray-900 text-white rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-gray-800 rounded-full mix-blend-overlay filter blur-3xl opacity-50 -mr-16 -mt-16"></div>
-                        <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-                            <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
-                                <Calculator size={32} className="text-white" />
+                    <div className={`rounded-2xl p-8 shadow-2xl relative overflow-hidden ${remainingNeeded <= 0 ? 'bg-gradient-to-br from-green-600 to-green-700' : 'bg-gradient-to-br from-gray-900 to-gray-800'}`}>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full mix-blend-overlay filter blur-3xl opacity-50 -mr-16 -mt-16"></div>
+                        <div className="relative z-10">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+                                    <Calculator size={28} className="text-white" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-xl text-white">Calculadora Diaria</h3>
+                                    <p className="text-white/70 text-sm">Proyección basada en deudas vs. disponible</p>
+                                </div>
                             </div>
-                            <div className="flex-1 w-full">
-                                <h3 className="font-bold text-xl mb-1">Calculadora Diaria</h3>
-                                <p className="text-gray-400 text-sm mb-6">Proyecta tu meta diaria basada en los gastos de esta semana.</p>
 
-                                <div className="flex items-end gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                            {/* Summary Cards */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                    <p className="text-xs font-bold text-white/60 uppercase tracking-wide mb-1">Total Deuda</p>
+                                    <p className="text-2xl font-black text-white">RD$ {totalWeeklyExpenses.toLocaleString()}</p>
+                                </div>
+                                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                    <p className="text-xs font-bold text-white/60 uppercase tracking-wide mb-1">Disponible Ahora</p>
+                                    <p className="text-2xl font-black text-white">RD$ {totalBank.toLocaleString()}</p>
+                                </div>
+                                <div className={`backdrop-blur-sm rounded-xl p-4 border-2 ${remainingNeeded <= 0 ? 'bg-white/20 border-white/40' : 'bg-orange-500/20 border-orange-400/50'}`}>
+                                    <p className="text-xs font-bold text-white uppercase tracking-wide mb-1">
+                                        {remainingNeeded <= 0 ? '✓ Meta Alcanzada' : 'Falta Conseguir'}
+                                    </p>
+                                    <p className="text-2xl font-black text-white">
+                                        RD$ {remainingNeeded.toLocaleString()}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Calculator */}
+                            <div className="bg-white/5 backdrop-blur-sm p-5 rounded-xl border border-white/10">
+                                <div className="flex items-center gap-4">
                                     <div className="flex-1">
-                                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Días restantes</label>
+                                        <label className="block text-xs font-bold text-white/70 uppercase tracking-wide mb-2">Días restantes</label>
                                         <select
-                                            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white outline-none focus:border-gray-500 font-bold appearance-none cursor-pointer"
+                                            className="w-full bg-black/30 border border-white/20 rounded-lg px-4 py-3 text-white outline-none focus:border-white/40 font-bold appearance-none cursor-pointer transition-all"
                                             value={daysForCalc}
                                             onChange={(e) => onUpdate({ ...data, daysForCalc: Number(e.target.value) })}
                                         >
                                             {Array.from({ length: 31 }, (_, i) => i + 1).map(d => (
-                                                <option key={d} value={d} className="text-white">{d} {d === 1 ? 'Día' : 'Días'}</option>
+                                                <option key={d} value={d} className="bg-gray-800">{d} {d === 1 ? 'Día' : 'Días'}</option>
                                             ))}
                                         </select>
                                     </div>
-                                    <div className="flex items-center justify-center pb-3 text-gray-500">
-                                        <ArrowRight size={20} />
+                                    <div className="flex items-center justify-center pt-6 text-white/50">
+                                        <ArrowRight size={24} />
                                     </div>
                                     <div className="flex-1 text-right">
-                                        <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Meta Diaria</p>
-                                        <p className="text-3xl font-black text-white tracking-tight">RD$ {dailyNeeded.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+                                        <p className="text-xs font-bold text-white/70 uppercase tracking-wide mb-2">Meta Diaria</p>
+                                        <p className="text-4xl font-black text-white tracking-tight">
+                                            RD$ {dailyNeeded.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                        </p>
+                                        {remainingNeeded <= 0 && (
+                                            <p className="text-sm text-white/80 mt-2 font-semibold">¡Ya tienes suficiente dinero!</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>
