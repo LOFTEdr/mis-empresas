@@ -1,14 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from './supabase';
-import { Auth } from './components/auth';
-import { Sidebar } from './components/sidebar';
-import { Dashboard } from './components/dashboard';
-import { CreditCards } from './components/creditcards';
-import { QuickCount } from './components/quickcount';
-import { Settings } from './components/settings';
-import { GeneralOverview } from './components/generaloverview';
-import { Subscriptions } from './components/subscriptions';
+import { Auth } from './components/auth.tsx';
+import { Sidebar } from './components/sidebar.tsx';
+import { Dashboard } from './components/dashboard.tsx';
+import { CreditCards } from './components/creditcards.tsx';
+import { QuickCount } from './components/quickcount.tsx';
+import { Settings } from './components/settings.tsx';
+import { GeneralOverview } from './components/generaloverview.tsx';
+import { Subscriptions } from './components/subscriptions.tsx';
 import { INITIAL_COMPANIES, INITIAL_TRANSACTIONS, INITIAL_CARDS, INITIAL_QUICK_COUNT, INITIAL_APP_SETTINGS, INITIAL_SUBSCRIPTIONS } from './constants';
 import { Transaction, Company, TransactionType, CreditCard, QuickCountData, AppSettings, Subscription, WeeklyDebt } from './types';
 import { Session } from '@supabase/supabase-js';
