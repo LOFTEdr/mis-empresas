@@ -1,7 +1,7 @@
 import { Company, CreditCard, Transaction, QuickCountData, AppSettings, Subscription } from './types';
 
 export const INITIAL_APP_SETTINGS: AppSettings = {
-  appName: 'FinCommand',
+  appName: 'Contabilidad y proyeccion',
   appLogo: null
 };
 

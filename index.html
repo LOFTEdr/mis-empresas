@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FinCommand Personal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- SheetJS for Excel Import -->
-    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              company: {
-                primary: 'var(--color-primary)',
-                secondary: 'var(--color-secondary)',
-                bg: 'var(--color-bg)',
-              }
-            }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contabilidad y proyeccion</title>
+  <link rel="icon" href="https://ssl.gstatic.com/docs/spreadsheets/favicon3.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- SheetJS for Excel Import -->
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
           },
+          colors: {
+            company: {
+              primary: 'var(--color-primary)',
+              secondary: 'var(--color-secondary)',
+              bg: 'var(--color-bg)',
+            }
+          }
         },
-      }
-    </script>
-    <style>
-      :root {
-        --color-primary: #10b981;
-        --color-secondary: #064e3b;
-        --color-bg: #f0fdf4;
-      }
-      ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
-      .dark ::-webkit-scrollbar-thumb {
-        background: #475569;
-      }
-      .dark ::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
-      }
-    </style>
+      },
+    }
+  </script>
+  <style>
+    :root {
+      --color-primary: #10b981;
+      --color-secondary: #064e3b;
+      --color-bg: #f0fdf4;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+  </style>
 </head>
-  <body class="bg-gray-50 text-gray-900 antialiased overflow-hidden selection:bg-gray-200 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <div id="root"></div>
+
+<body
+  class="bg-gray-50 text-gray-900 antialiased overflow-hidden selection:bg-gray-200 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
