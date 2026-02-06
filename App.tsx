@@ -90,6 +90,7 @@ const App = () => {
     const [quickCountData, setQuickCountData] = useState<QuickCountData>(INITIAL_QUICK_COUNT);
 
     const [activeTab, setActiveTab] = useState('dashboard');
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const selectedCompany = companies.find(c => c.id === selectedCompanyId) || companies[0] || INITIAL_COMPANIES[0];
 
@@ -810,7 +811,6 @@ const App = () => {
         );
     }
 
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     if (!session) {
         return <Auth />;
