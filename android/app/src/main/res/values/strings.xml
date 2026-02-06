@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Contabilidad y Proyeccion</string>
+    <string name="title_activity_main">Contabilidad y Proyeccion</string>
+    <string name="package_name">com.contabilidad.app</string>
+    <string name="custom_url_scheme">com.contabilidad.app</string>
+</resources>

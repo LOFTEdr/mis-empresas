@@ -172,7 +172,7 @@ export const WorkManager: React.FC<WorkManagerProps> = ({ company, currentUserId
         .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
 
     return (
-        <div className="p-6 h-screen overflow-y-auto bg-gray-50 dark:bg-gray-900 pb-20">
+        <div className="p-4 md:p-6 h-screen overflow-y-auto bg-gray-50 dark:bg-gray-900 pb-20">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
@@ -184,8 +184,8 @@ export const WorkManager: React.FC<WorkManagerProps> = ({ company, currentUserId
                     <button
                         onClick={() => setView('agenda')}
                         className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${view === 'agenda'
-                                ? 'bg-indigo-600 text-white shadow-md'
-                                : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'
+                            ? 'bg-indigo-600 text-white shadow-md'
+                            : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'
                             }`}
                     >
                         Agenda
@@ -193,8 +193,8 @@ export const WorkManager: React.FC<WorkManagerProps> = ({ company, currentUserId
                     <button
                         onClick={() => setView('clients')}
                         className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${view === 'clients'
-                                ? 'bg-indigo-600 text-white shadow-md'
-                                : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'
+                            ? 'bg-indigo-600 text-white shadow-md'
+                            : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'
                             }`}
                     >
                         Clientes
@@ -296,10 +296,10 @@ export const WorkManager: React.FC<WorkManagerProps> = ({ company, currentUserId
                                                 const nextStatus = task.status === 'pending' ? 'completed' : task.status === 'completed' ? 'confirmed' : 'pending';
                                                 handleUpdateTaskStatus(task.id, nextStatus);
                                             }} className={`mt-1 w-6 h-6 rounded-full border-2 flex items-center justify-center cursor-pointer transition-colors ${task.status === 'confirmed'
-                                                    ? 'bg-green-500 border-green-500 text-white'
-                                                    : task.status === 'completed'
-                                                        ? 'bg-blue-500 border-blue-500 text-white'
-                                                        : 'border-gray-300 dark:border-gray-600 hover:border-indigo-500'
+                                                ? 'bg-green-500 border-green-500 text-white'
+                                                : task.status === 'completed'
+                                                    ? 'bg-blue-500 border-blue-500 text-white'
+                                                    : 'border-gray-300 dark:border-gray-600 hover:border-indigo-500'
                                                 }`}>
                                                 {(task.status === 'completed' || task.status === 'confirmed') && <Check size={14} strokeWidth={3} />}
                                             </div>

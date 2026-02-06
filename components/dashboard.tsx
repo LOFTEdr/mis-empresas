@@ -199,7 +199,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
     };
 
     return (
-        <div className="p-8 h-full overflow-y-auto pb-32">
+        <div className="p-4 md:p-8 h-full overflow-y-auto pb-32">
             {/* Header & Controls */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                 <div>
