@@ -9,6 +9,7 @@ import { QuickCount } from './components/quickcount.tsx';
 import { Settings } from './components/settings.tsx';
 import { GeneralOverview } from './components/generaloverview.tsx';
 import { Subscriptions } from './components/subscriptions.tsx';
+import { WorkManager } from './components/workmanager.tsx';
 import { INITIAL_COMPANIES, INITIAL_TRANSACTIONS, INITIAL_CARDS, INITIAL_QUICK_COUNT, INITIAL_APP_SETTINGS, INITIAL_SUBSCRIPTIONS } from './constants';
 import { Transaction, Company, TransactionType, CreditCard, QuickCountData, AppSettings, Subscription, WeeklyDebt } from './types';
 import { Session } from '@supabase/supabase-js';
@@ -776,6 +777,8 @@ const App = () => {
                 return <QuickCount data={quickCountData} onUpdate={handleQuickCountUpdate} />;
             case 'overview':
                 return <GeneralOverview companies={companies} transactions={transactions} />;
+            case 'work':
+                return <WorkManager company={selectedCompany} currentUserId={session?.user.id || ''} />;
             case 'settings':
                 return <Settings
                     companies={companies}

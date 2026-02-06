@@ -87,3 +87,18 @@ export interface Subscription {
   cardId: string; // Linked Credit Card ID
   category: SubscriptionCategory;
 }
+
+export interface Client {
+  id: string;
+  name: string;
+  contactInfo: string;
+  companyId: string; // To link to the current company context
+}
+
+export interface ClientTask {
+  id: string;
+  clientId: string;
+  description: string;
+  dueDate: string; // ISO String
+  status: 'pending' | 'completed' | 'confirmed';
+}
